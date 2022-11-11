@@ -65,9 +65,10 @@ body {
 }
 
 .div-submodal {
-  width: 350px;
+  width: 380px;
   height: 300px;
   background-color: white;
+  overflow-y: scroll;
 }
 
 .div-modal-header {
@@ -78,9 +79,10 @@ body {
   padding: 10px;
 }
 
-.div-modal-header h1 {
+.div-modal-header span {
   padding: 0px;
   margin: 0px;
+  font-size: 18pt;
 }
 
 .div-modal-header button {
