@@ -1,6 +1,7 @@
 import map from "./map.js";
 
 function init() {
+  let i = 0;
   let id = null;
   let flag = false;
 
@@ -18,15 +19,16 @@ function init() {
 
   const onGetLocation = (location) => {
     const xy = location.coords;
-    console.log("Latitude: " + xy.latitude, " Longitude: " + xy.longitude);
-    modalContent.innerHTML += `<div>Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
+    modalContent.innerHTML += `<div>${i} Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
     map.setCenter([xy.longitude, xy.latitude]);
     marker.setLngLat([xy.longitude, xy.latitude]);
-
-    if (flag) {
+    marker.addTo(map);
+    if (i == 0) {
       map.zoomTo(17);
-      marker.addTo(map);
+    } else {
+      return;
     }
+    i++;
   };
 
   const onError = (error) => {
