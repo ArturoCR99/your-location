@@ -20,13 +20,10 @@ function init() {
     const xy = location.coords;
     console.log("Latitude: " + xy.latitude, " Longitude: " + xy.longitude);
     modalContent.innerHTML += `<div>Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
-    marker.setLngLat([xy.longitude, xy.latitude]);
-    marker.addTo(map);
     map.setCenter([xy.longitude, xy.latitude]);
+    marker.setLngLat([xy.longitude, xy.latitude]);
 
-    if (!flag) {
-      return;
-    } else {
+    if (flag) {
       map.zoomTo(17);
       marker.addTo(map);
     }
