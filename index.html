@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Add a default marker</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="div-main">
+      <div class="div-map-container"><div id="map"></div></div>
+      <div class="div-btn-details">
+        <button id="detailsBtn">Detalles</button>
+      </div>
+      <div class="div-modal">
+        <div class="div-submodal">
+          <div class="div-modal-header">
+            <div><h1>Detalles</h1></div>
+            <div><button id="closeBtn">X</button></div>
+          </div>
+          <div class="div-modal-content"></div>
+        </div>
+      </div>
+      <div class="div-controls"><button id="startBtn">Start</button></div>
+    </div>
+  </body>
+  <script type="module" src="./js/tracker.js"></script>
+</html>
