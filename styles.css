@@ -68,7 +68,6 @@ body {
   width: 380px;
   height: 300px;
   background-color: white;
-  overflow-y: scroll;
 }
 
 .div-modal-header {
@@ -96,4 +95,5 @@ body {
 
 .div-modal-content {
   padding: 10px;
+  overflow-y: scroll;
 }

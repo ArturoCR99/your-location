@@ -20,17 +20,17 @@ function init() {
 
   const onGetLocation = (location) => {
     const xy = location.coords;
+    i++;
     modalContent.innerHTML += `<div>${i} Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
     marker.setLngLat([xy.longitude, xy.latitude]);
+    map.setCenter([xy.longitude, xy.latitude]);
     marker.addTo(map);
     if (temp) {
       map.zoomTo(17);
-      map.setCenter([xy.longitude, xy.latitude]);
-      temp = false;
     } else {
       return;
     }
-    i++;
+    temp = false;
   };
 
   const onError = (error) => {
