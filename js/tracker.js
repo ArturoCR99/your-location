@@ -2,6 +2,7 @@ import map from "./map.js";
 
 function init() {
   let i = 0;
+  let temp = true;
   let id = null;
   let flag = false;
 
@@ -20,11 +21,12 @@ function init() {
   const onGetLocation = (location) => {
     const xy = location.coords;
     modalContent.innerHTML += `<div>${i} Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
-    map.setCenter([xy.longitude, xy.latitude]);
     marker.setLngLat([xy.longitude, xy.latitude]);
     marker.addTo(map);
-    if (i == 0) {
+    if (temp) {
       map.zoomTo(17);
+      map.setCenter([xy.longitude, xy.latitude]);
+      temp = false;
     } else {
       return;
     }
@@ -56,6 +58,7 @@ function init() {
       startBtn.innerText = "Start";
       console.log("Tracking is Off");
       marker.remove();
+      temp = true;
     }
   });
 
