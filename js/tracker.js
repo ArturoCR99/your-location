@@ -21,6 +21,8 @@ function init() {
     console.log("Latitude: " + xy.latitude, " Longitude: " + xy.longitude);
     modalContent.innerHTML += `<div>Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
     marker.setLngLat([xy.longitude, xy.latitude]);
+    map.setCenter([xy.longitude, xy.latitude]);
+    map.zoomTo(17);
   };
 
   const onError = (error) => {
