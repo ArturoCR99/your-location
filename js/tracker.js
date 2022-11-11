@@ -21,8 +21,15 @@ function init() {
     console.log("Latitude: " + xy.latitude, " Longitude: " + xy.longitude);
     modalContent.innerHTML += `<div>Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
     marker.setLngLat([xy.longitude, xy.latitude]);
+    marker.addTo(map);
     map.setCenter([xy.longitude, xy.latitude]);
-    map.zoomTo(17);
+
+    if (!flag) {
+      return;
+    } else {
+      map.zoomTo(17);
+      marker.addTo(map);
+    }
   };
 
   const onError = (error) => {
@@ -45,7 +52,6 @@ function init() {
       );
       startBtn.innerText = "Stop";
       console.log("Tracking is On");
-      marker.addTo(map);
     } else {
       navigator.geolocation.clearWatch(id);
       startBtn.innerText = "Start";
