@@ -24,6 +24,6 @@
 
 ###
 
-<p align="left">HTML5, CSS3, JavaScript, Chrome, VSCode</p>
+<p align="left">HTML5, CSS3, JavaScript, API Geolocation, VSCode</p>
 
 ###
