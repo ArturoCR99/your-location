@@ -3,7 +3,7 @@ import map from "./map.js";
 function init() {
   //Initialize variables
   var id = null;
-  var flag = false;
+  var startflag = false;
   var zoomFlag = true;
   var counter = 0;
   var marker = new maplibregl.Marker();
@@ -43,7 +43,7 @@ function init() {
   function error(err) {
     console.error(`ERROR(${err.code}): ${err.message}`);
     if (err.code == 1) {
-      alert("El permiso de ubicación está deshabilitado");
+      alert("Habilita los permisos de localización");
     }
   }
 
@@ -56,9 +56,9 @@ function init() {
   }
 
   startBtn.addEventListener("click", () => {
-    flag = !flag;
+    startflag = !startflag;
 
-    if (flag) {
+    if (startflag) {
       watchPosition();
       startBtn.innerText = "Stop";
     } else {
