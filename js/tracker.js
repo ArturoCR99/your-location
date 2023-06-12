@@ -1,70 +1,74 @@
 import map from "./map.js";
 
 function init() {
-  let i = 0;
-  let temp = true;
-  let id = null;
-  let flag = false;
-
+  //Initialize variables
+  var id = null;
+  var flag = false;
+  var zoomFlag = true;
+  var counter = 0;
   var marker = new maplibregl.Marker();
 
+  //Initialize DOM elements
   const startBtn = document.getElementById("startBtn");
   const detailsBtn = document.getElementById("detailsBtn");
   const closeBtn = document.getElementById("closeBtn");
   const modal = document.querySelector(".div-modal");
   const modalContent = document.querySelector(".div-modal-content");
 
-  if (!navigator.geolocation in navigator) {
-    return alert("Tu navegador no soporta el acceso a la ubicación");
-  }
+  //Watch Position Objects and Methods
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
-  const onGetLocation = (location) => {
-    const xy = location.coords;
-    i++;
-    modalContent.innerHTML += `<div>${i} Latitud: ${xy.latitude}, Longitud: ${xy.longitude}</div>`;
-    marker.setLngLat([xy.longitude, xy.latitude]);
-    map.setCenter([xy.longitude, xy.latitude]);
+  function success(p) {
+    const c = p.coords;
+
+    marker.setLngLat([c.longitude, c.latitude]);
+    map.setCenter([c.longitude, c.latitude]);
     marker.addTo(map);
-    if (temp) {
-      map.zoomTo(17);
+    if (zoomFlag) {
+      map.zoomTo(17, { duration: 1000 });
     } else {
       return;
     }
-    temp = false;
-  };
+    zoomFlag = false;
+    modalContent.innerHTML += `<div>${counter++}: ${c.longitude}, ${
+      c.latitude
+    }</div>`;
+  }
 
-  const onError = (error) => {
-    console.log("Hubo un error, espero haberte ayudado " + error);
-  };
+  function error(err) {
+    console.error(`ERROR(${err.code}): ${err.message}`);
+  }
 
-  const setOptions = {
-    enableHighAccuracy: true,
-    maximumAge: 0,
-    timeout: 5000,
-  };
+  function watchPosition() {
+    if (!navigator.geolocation) {
+      alert("Geolocalization is not supported by you current browser");
+    } else {
+      id = navigator.geolocation.watchPosition(success, error, options);
+    }
+  }
 
   startBtn.addEventListener("click", () => {
     flag = !flag;
+
     if (flag) {
-      id = navigator.geolocation.watchPosition(
-        onGetLocation,
-        onError,
-        setOptions
-      );
+      watchPosition();
       startBtn.innerText = "Stop";
-      console.log("Tracking is On");
     } else {
-      navigator.geolocation.clearWatch(id);
       startBtn.innerText = "Start";
-      console.log("Tracking is Off");
-      marker.remove();
-      temp = true;
+      navigator.geolocation.clearWatch(id);
+      zoomFlag = true;
     }
   });
 
+  //Event Open Details Modal
   detailsBtn.addEventListener("click", () => {
     modal.classList.add("div-modal-show");
   });
+  //Event Close Details Modal
   closeBtn.addEventListener("click", () => {
     modal.classList.remove("div-modal-show");
   });
