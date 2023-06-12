@@ -26,7 +26,7 @@ function init() {
   function success(p) {
     const c = p.coords;
     counter++;
-    modalContent.innerHTML += `<div>${counter} ${c.longitude}, ${c.latitude}</div>`;
+    modalContent.innerHTML += `<div>${counter} LONG[${c.longitude}], LAT[${c.latitude}]</div>`;
     marker.setLngLat([c.longitude, c.latitude]);
     map.setCenter([c.longitude, c.latitude]);
     marker.addTo(map);
