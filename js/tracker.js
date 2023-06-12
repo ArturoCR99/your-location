@@ -16,6 +16,7 @@ function init() {
   const modalContent = document.querySelector(".div-modal-content");
 
   //Watch Position Objects and Methods
+
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -41,7 +42,7 @@ function init() {
 
   function error(err) {
     console.error(`ERROR(${err.code}): ${err.message}`);
-    if ((err.code = 1)) {
+    if (err.code == 1) {
       alert("El permiso de ubicación está deshabilitado");
     }
   }

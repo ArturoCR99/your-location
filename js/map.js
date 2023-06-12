@@ -27,4 +27,7 @@ var map = new maplibregl.Map({
   zoom: 12,
 });
 
+// Add the navigation control
+map.addControl(new maplibregl.NavigationControl());
+
 export default map;
