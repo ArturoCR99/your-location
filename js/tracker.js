@@ -41,6 +41,7 @@ function init() {
 
   function error(err) {
     console.error(`ERROR(${err.code}): ${err.message}`);
+    alert(err.message);
   }
 
   function watchPosition() {
