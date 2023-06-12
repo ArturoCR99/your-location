@@ -25,7 +25,8 @@ function init() {
 
   function success(p) {
     const c = p.coords;
-
+    counter++;
+    modalContent.innerHTML += `<div>${counter} ${c.longitude}, ${c.latitude}</div>`;
     marker.setLngLat([c.longitude, c.latitude]);
     map.setCenter([c.longitude, c.latitude]);
     marker.addTo(map);
@@ -35,9 +36,6 @@ function init() {
       return;
     }
     zoomFlag = false;
-    modalContent.innerHTML += `<div>${counter++}: ${c.longitude}, ${
-      c.latitude
-    }</div>`;
   }
 
   function error(err) {
