@@ -41,7 +41,9 @@ function init() {
 
   function error(err) {
     console.error(`ERROR(${err.code}): ${err.message}`);
-    alert(err.message);
+    if ((err.code = 1)) {
+      alert("El permiso de ubicación está deshabilitado");
+    }
   }
 
   function watchPosition() {
