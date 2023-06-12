@@ -99,6 +99,5 @@ body {
   height: 230px;
   padding: 10px;
   box-sizing: border-box;
-  overflow-y: scroll;
-  background-color: rgba(39, 39, 238, 0.39);
+  overflow-y: auto;
 }
